@@ -1,0 +1,37 @@
+defaultTasks 'clean', 'build'
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+version = '1.0.0'
+group = 'com.ubs.opsit.interviews.berlinclock'
+
+task wrapper(type: Wrapper){
+    description = 'Generates gradlew scripts for NIX and win envs'
+    gradleVersion = '2.0'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+idea.module {
+    downloadSources = true
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.7',
+            'commons-lang:commons-lang:2.6',
+            "org.codehaus.groovy:groovy-all:2.3.3"
+
+    runtime 'log4j:log4j:1.2.17'
+
+    testCompile 'junit:junit:4.11',
+            'org.hamcrest:hamcrest-all:1.3',
+            'org.mockito:mockito-all:1.9.5',
+            'commons-io:commons-io:2.4',
+            'org.jbehave:jbehave-core:3.8',
+            'org.spockframework:spock-core:0.7-groovy-2.0'
+}
